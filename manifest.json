@@ -1,0 +1,58 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "version": "1.0.4",
+  "short_name": "Summari",
+  "name": "Summari for Chrome",
+  "description": "Summari is your AI-powered assistant that summarizes articles. We provide the key ideas before you read the article in full.",
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+J",
+        "mac": "Command+J"
+      }
+    }
+  },
+  "action": {
+    "default_title": "Summari",
+    "default_icon": "/images/joggo-comma-16.png",
+    "browser_action": {
+      "default_icon": "/images/joggo-comma-16.png"
+    }
+  },
+  "background": {
+    "service_worker": "/static/js/background.js"
+  },
+  "externally_connectable": {
+    "matches": ["*://*.example.com/*"]
+  },
+  "options_page": "/options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["/static/css/content.css"],
+      "js": ["/static/js/content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["options.html"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["/static/media/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "permissions": ["tabs", "webNavigation", "storage"],
+  "icons": {
+    "16": "images/joggo-comma-16.png",
+    "48": "images/joggo-comma-48.png",
+    "128": "images/joggo-comma-128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'",
+    "sandbox": "sandbox allow-scripts; script-src 'self' 'https://apis.google.com/' 'https://www.gstatic.com/' 'https://*.firebaseio.com' 'https://www.googleapis.com' 'https://ajax.googleapis.com'; object-src 'self'"
+  }
+}
