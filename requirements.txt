@@ -1,0 +1,5 @@
+uvicorn
+fastapi
+chromedriver-binary==97.0.4692.71.0
+selenium==4.1.0
+pyvirtualdisplay
